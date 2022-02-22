@@ -1,0 +1,532 @@
+﻿<Window x:Class="PETCARE_Csharp.Billing"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PETCARE_Csharp"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Employees"      
+        Height="700" 
+        Width="1200"
+        WindowStyle="None"
+        AllowsTransparency="true"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Normal">
+    <Window.Resources>
+        <ImageBrush x:Key="tb_mouse_over"
+                    ImageSource="Images/menub.png"/>
+
+        <!--Text font style-->
+        <Style x:Key="font_style" TargetType="TextBlock">
+            <Setter Property="FontFamily"
+                    Value="Fonts/Poppins-SemiBold.ttf #Poppins"/>
+            <Setter Property="VerticalAlignment"
+                    Value="Center"/>
+            <Setter Property="HorizontalAlignment"
+                    Value="Left"/>
+            <Setter Property="Foreground"
+                    Value="White"/>
+            <Setter Property="FontSize"
+                    Value="20"/>
+        </Style>
+        <!--Tooltip-->
+
+        <Style TargetType="ToolTip" x:Key="tt_style">
+            <Setter Property="Placement" Value="Right"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Margin" Value="20,20,20,20"/>
+            <Setter Property="Background" Value="#2A9D8F"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Fonts/Poppins-SemiBold.ttf"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="PlacementRectangle" Value="60,0,0,0"/>
+            <Setter Property="HorizontalOffset" Value="15"/>
+            <Setter Property="VerticalOffset" Value="6"/>
+            <Setter Property="HasDropShadow" Value="True"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+
+        </Style>
+
+        <Style x:Key="tb_style" TargetType="{x:Type ToggleButton}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Border Name="border"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}"
+                                SnapsToDevicePixels="True">
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background"
+                                        TargetName="border"
+                                        Value="{StaticResource tb_mouse_over}"/>
+                                <Setter Property="BorderBrush"
+                                        TargetName="border"
+                                        Value="{StaticResource tb_mouse_over}"/>
+
+
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Background"
+                                        TargetName="border"
+                                        Value="{StaticResource tb_mouse_over}"/>
+                                <Setter Property="BorderBrush"
+                                        TargetName="border"
+                                        Value="{StaticResource tb_mouse_over}"/>
+
+
+                            </Trigger>
+
+
+
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Border CornerRadius="200">
+        <Grid>
+
+            <!-- //Background color//-->
+            <Grid Background="White">
+
+
+                <!--Navigation panel-->
+
+
+                <!--Navigation panel-->
+                <!--Navigation panel-->
+
+                <Grid x:Name="nav_pnl"
+                  HorizontalAlignment="Left"
+                  Width="90"                  
+                  Background="#2A9D8F">
+
+                    <StackPanel x:Name="st_pnl">
+                        <!--Grid for all toggle menu button-->
+
+                        <Grid Height="100">
+
+
+                            <!--Toggle button-->
+
+                            <ToggleButton x:Name="Tg_Btn"
+                                      Grid.Column="0"
+                                      VerticalAlignment="Center"
+                                      HorizontalAlignment="Left"
+                                      Margin="14,14,0,26"
+                                      Width="60"
+                                      Height="60"
+                                      BorderThickness="0"
+                                      Style="{StaticResource tb_style}"
+                                      >
+                                <!--toggle button default background image-->
+
+                                <ToggleButton.Background>
+                                    <ImageBrush ImageSource="Images/menub.png"
+                                            Stretch="None"/>
+                                </ToggleButton.Background>
+
+                                <!--toggle button checked unchecked events-->
+                                <ToggleButton.Triggers>
+                                    <EventTrigger RoutedEvent="ToggleButton.Unchecked">
+                                        <BeginStoryboard>
+                                            <Storyboard x:Name="HideStackPanel">
+                                                <DoubleAnimation 
+                                                Storyboard.TargetName="nav_pnl"
+                                                Storyboard.TargetProperty="Width"
+                                                BeginTime="0:0:0"
+                                                From="235"
+                                                To="90"
+                                                Duration="0:0:0.2"
+                                                />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                    <EventTrigger RoutedEvent="ToggleButton.Checked">
+                                        <BeginStoryboard>
+                                            <Storyboard x:Name="ShowStackPanel">
+                                                <DoubleAnimation 
+                                                Storyboard.TargetName="nav_pnl"
+                                                Storyboard.TargetProperty="Width"
+                                                BeginTime="0:0:0"
+                                                From="90"
+                                                To="235"
+                                                Duration="0:0:0.3"
+                                                />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+
+                                </ToggleButton.Triggers>
+
+
+                            </ToggleButton>
+
+                        </Grid>
+                        <!--Menu items-->
+
+                        <ListView x:Name="LV"
+                              Background="Transparent"
+                              BorderBrush="Transparent"
+                              ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                            <!--Listview items style temple-->
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListViewItem}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                                <Border x:Name="Bd"
+                                              Height="65"
+                                              BorderBrush="{TemplateBinding BorderBrush}"
+                                              BorderThickness="{TemplateBinding BorderThickness}"
+                                              Background="{TemplateBinding Background}"                                              
+                                              SnapsToDevicePixels="True">
+
+                                                    <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+
+
+                                                </Border>
+                                                <ControlTemplate.Triggers>
+                                                    <MultiTrigger>
+                                                        <MultiTrigger.Conditions>
+                                                            <Condition Property="IsMouseOver" Value="True"/>
+
+
+                                                        </MultiTrigger.Conditions>
+                                                        <Setter Property="Background"
+                                                            TargetName="Bd"
+                                                            Value="#61ABA2"/>
+                                                        <Setter Property="BorderBrush"
+                                                            TargetName="Bd"
+                                                            Value="#61ABA2"/>
+                                                    </MultiTrigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ListView.ItemContainerStyle>
+
+                            <!--Home-->
+
+                            <ListViewItem HorizontalAlignment="Left"
+                                      Margin="0,0,0,20" MouseEnter="ListViewItem_MouseEnter">
+                                <!--Tooltip-->
+                                <ListViewItem.ToolTip>
+                                    <ToolTip x:Name="tt_home"
+                                         Content="Home"
+                                         Style="{StaticResource tt_style}"/>
+
+                                </ListViewItem.ToolTip>
+                                <StackPanel Orientation="Horizontal"
+                                        Width="250"
+                                            >
+                                    <Image x:Name="Home1" Source="Images/Homeb.png"
+                                       Stretch="None" Height="78" Width="86" RenderTransformOrigin="0.345,0.49" MouseLeftButtonDown="Home1_click"                                       
+                                      >
+                                        <Image.RenderTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform/>
+                                                <SkewTransform AngleY="0.674"/>
+                                                <RotateTransform/>
+                                                <TranslateTransform Y="0.268"/>
+                                            </TransformGroup>
+                                        </Image.RenderTransform>
+                                    </Image>
+                                    <TextBlock Text="Home"
+                                           Margin="27,0,20,0"
+                                           Style="{StaticResource font_style}"/>
+
+                                </StackPanel>
+                            </ListViewItem>
+
+                            <!--Pets-->
+                            <ListViewItem HorizontalAlignment="Left"
+                                      Margin="0,0,0,20" MouseEnter="ListViewItem_MouseEnter">
+                                <!--Tooltip-->
+                                <ListViewItem.ToolTip>
+                                    <ToolTip x:Name="tt_Pets"
+                                         Content="Pets"
+                                         Style="{StaticResource tt_style}"/>
+
+                                </ListViewItem.ToolTip>
+                                <StackPanel Orientation="Horizontal"
+                                        Width="230">
+                                    <Image x:Name="pet" Source="Images/pets.png"
+                                       Stretch="None" Height="78" Width="88" RenderTransformOrigin="0.345,0.49" MouseLeftButtonDown="Petspg" 
+                                      
+                                       />
+
+                                    <TextBlock Text="Pets"
+                                           Margin="28,0,20,0"
+                                           Style="{StaticResource font_style}"/>
+
+                                </StackPanel>
+                            </ListViewItem>
+                            <!--Products-->
+                            <ListViewItem HorizontalAlignment="Left"
+                                      Margin="0,0,0,20" MouseEnter="ListViewItem_MouseEnter">
+                                <!--Tooltip-->
+                                <ListViewItem.ToolTip>
+                                    <ToolTip x:Name="tt_Products"
+                                         Content="Products"                                         
+                                         Style="{StaticResource tt_style}"/>
+
+                                </ListViewItem.ToolTip>
+                                <StackPanel Orientation="Horizontal"
+                                        Width="230">
+                                    <Image x:Name="prdcts" Source="Images/products.png"
+                                       Stretch="None" Width="84" MouseLeftButtonDown="prodspg" 
+                                      
+                                       />
+                                    <TextBlock Text="Products"
+                                           Margin="27,0,0,0"
+                                           Style="{StaticResource font_style}" Width="89" RenderTransformOrigin="1.377,0.477"/>
+
+                                </StackPanel>
+                            </ListViewItem>
+                            <!--Employees-->
+                            <ListViewItem HorizontalAlignment="Left"
+                                      Margin="0,0,0,20" MouseEnter="ListViewItem_MouseEnter">
+                                <!--Tooltip-->
+                                <ListViewItem.ToolTip>
+                                    <ToolTip x:Name="tt_Employees"
+                                         Content="Employeees"
+                                         Style="{StaticResource tt_style}"/>
+
+                                </ListViewItem.ToolTip>
+                                <StackPanel Orientation="Horizontal"
+                                        Width="230">
+                                    <Image x:Name="emp" Source="Images/Employees.png"
+                                       Stretch="None" Width="85" MouseLeftButtonDown="emppg" 
+                                      
+                                       />
+                                    <TextBlock Text="Employees"
+                                           Margin="27,0,0,0"
+                                           Style="{StaticResource font_style}"/>
+
+                                </StackPanel>
+                            </ListViewItem>
+                            <!--Customers-->
+                            <ListViewItem HorizontalAlignment="Left"
+                                      Margin="0,0,0,20" MouseEnter="ListViewItem_MouseEnter">
+                                <!--Tooltip-->
+                                <ListViewItem.ToolTip>
+                                    <ToolTip x:Name="tt_Customers"
+                                         Content="Customers"
+                                         Style="{StaticResource tt_style}"/>
+
+                                </ListViewItem.ToolTip>
+                                <StackPanel Orientation="Horizontal"
+                                        Width="230">
+                                    <Image x:Name="cust" Source="Images/customers.png"
+                                       Stretch="None" Width="81" MouseLeftButtonDown="cuspg" 
+                                      
+                                       />
+                                    <TextBlock Text="Customers"
+                                           Margin="27,0,0,0"
+                                           Style="{StaticResource font_style}"/>
+
+                                </StackPanel>
+                            </ListViewItem>
+                            <!--Billing-->
+                            <ListViewItem HorizontalAlignment="Left"
+                                      Margin="0,0,0,20" MouseEnter="ListViewItem_MouseEnter">
+                                <!--Tooltip-->
+                                <ListViewItem.ToolTip>
+                                    <ToolTip x:Name="tt_Billing"
+                                         Content="Billing"
+                                         Style="{StaticResource tt_style}"/>
+
+                                </ListViewItem.ToolTip>
+                                <StackPanel Orientation="Horizontal"
+                                        Width="230">
+                                    <Image x:Name="bill" Source="Images/Billing.png"
+                                       Stretch="None" Width="84" MouseLeftButtonDown="billing_click" 
+                                      
+                                       />
+                                    <TextBlock Text="Billing"
+                                           Margin="27,0,0,0"
+                                           Style="{StaticResource font_style}"/>
+
+                                </StackPanel>
+                            </ListViewItem>
+                            <!--Logout-->
+                            <ListViewItem HorizontalAlignment="Left"
+                                      Margin="0,0,0,20" MouseEnter="ListViewItem_MouseEnter">
+                                <!--Tooltip-->
+                                <ListViewItem.ToolTip>
+                                    <ToolTip x:Name="tt_logout"
+                                         Content="Logout"
+                                         Style="{StaticResource tt_style}"/>
+                                </ListViewItem.ToolTip>
+                                <StackPanel Orientation="Horizontal"
+                                        Width="230">
+                                    <Image x:Name="Logout" Source="Images/logout.png"
+                                       Stretch="None" Width="85" MouseLeftButtonDown="Lgut"                             
+                                       />
+                                    <TextBlock Text="Logout"
+                                           Margin="25,0,0,0"
+                                           Style="{StaticResource font_style}"/>
+
+                                </StackPanel>
+                            </ListViewItem>
+
+                        </ListView>
+
+                    </StackPanel>
+
+
+                </Grid>
+                <!--End Navigation panel-->
+                <StackPanel Width="70" Height="75" VerticalAlignment="Top" HorizontalAlignment="Right">
+                    <Button Margin="4,20,16,20" Style="{StaticResource MaterialDesignFloatingActionAccentButton}" Background="{x:Null}"
+                        ToolTip="Close"   Height="48" Width="Auto" Click="btnExit_Click" RenderTransformOrigin="0.618,0.197"  >
+                        <materialDesign:PackIcon Kind="Close" Foreground="#2A9D8F" Width="30" Height="30" />
+                    </Button>
+                </StackPanel>
+
+                <StackPanel Width="1100" Height="625" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                    <Border Height="177" CornerRadius="20" Background="White" Margin="0,-60,654,0" BorderThickness="2" BorderBrush="#D9D9D9">
+                        <StackPanel Width="1010" Height="300">
+                            <StackPanel Width="250" Margin="380,5">
+                                <TextBlock Text="Customer ID" HorizontalAlignment="Right" FontSize="25" FontFamily="/Fonts/Poppins-Medium.ttf #Poppins" Foreground="#2A9D8F" Margin="-359,50,436.6,0" Width="172" />
+                            </StackPanel>
+                            <StackPanel Width="250" Margin="380,5">
+                                <TextBlock Text="Customer Name" HorizontalAlignment="Right" FontSize="25" FontFamily="/Fonts/Poppins-Medium.ttf #Poppins" Foreground="#2A9D8F" Margin="-157,-48,193.6,0" Width="213" />
+                                <TextBlock Text="Customer" HorizontalAlignment="Right" FontSize="30" FontFamily="/Fonts/Poppins-Bold.ttf #Poppins" Foreground="#2A9D8F" Margin="-361,-130,413.6,0" Width="197" Height="54" />
+                            </StackPanel>
+                            <StackPanel Width="250" Margin="380,5"/>
+                            <StackPanel Width="250" Margin="380,5"/>
+                            <StackPanel Width="250" Margin="380,5">
+                                <TextBox x:Name="Customer_ID" FontSize="20" HorizontalAlignment="Right"  BorderThickness="2" FontFamily="/Fonts/Poppins-Medium.ttf #Poppins" Foreground="Black" BorderBrush="#2A9D8F" Width="180" Background="White" Height="45" Margin="-362,-20,431.6,0" VerticalAlignment="Center" TextChanged="idChanged" />
+                            </StackPanel>
+                            <StackPanel Width="250" Margin="380,5">
+                                <TextBox x:Name="Customer_Name" FontSize="20" HorizontalAlignment="Right"  FontFamily="/Fonts/Poppins-Medium.ttf #Poppins" Foreground="Black" BorderBrush="#2A9D8F" Width="180" Background="White" BorderThickness="2" Height="45" Margin="-160,-65,229.6,0" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Width="250" Margin="380,5"/>
+                            <StackPanel Width="250" Margin="380,5"/>
+                            <!-- input field end -->
+
+
+                            <StackPanel Width="300"/>
+
+
+                            <StackPanel Width="300"/>
+
+
+                            <StackPanel Width="300"/>
+
+
+                            <StackPanel Width="300"/>
+
+
+                        </StackPanel>
+                    </Border>
+                    <Border Height="213" CornerRadius="20" Background="White" Margin="0,10,545,0" BorderBrush="#D9D9D9" BorderThickness="2" >
+                        <StackPanel Width="1010" Height="300">
+                            <StackPanel Width="250" Margin="380,5">
+                                <TextBlock Text="Name" HorizontalAlignment="Right" FontSize="25" FontFamily="/Fonts/Poppins-Medium.ttf #Poppins" Foreground="#2A9D8F" Margin="-367,50,540.6,0" />
+                            </StackPanel>
+                            <StackPanel Width="250" Margin="380,5">
+                                <TextBlock Text="Unit Price" HorizontalAlignment="Right" FontSize="25" FontFamily="/Fonts/Poppins-Medium.ttf #Poppins" Foreground="#2A9D8F" Margin="-176,-48,284,0" Width="142" />
+                                <TextBlock Text="Quantity" HorizontalAlignment="Right" FontSize="25" FontFamily="/Fonts/Poppins-Medium.ttf #Poppins" Foreground="#2A9D8F" Margin="0,-48,98.6,0" Width="142" />
+                                <TextBlock Text="Items" HorizontalAlignment="Right" FontSize="30" FontFamily="/Fonts/Poppins-Bold.ttf #Poppins" Foreground="#2A9D8F" Margin="-367,-145,474.6,0" Width="142" Height="38" />
+                            </StackPanel>
+                            <StackPanel Width="250" Margin="380,5"/>
+                            <StackPanel Width="250" Margin="380,5"/>
+                            <StackPanel Width="250" Margin="380,5">
+                                <TextBox x:Name="Item_Name1" FontSize="20" HorizontalAlignment="Right"  FontFamily="/Fonts/Poppins-Medium.ttf #Poppins" Foreground="Black" Width="180" Background="White" BorderBrush="#2A9D8F" BorderThickness="2" Height="45" Margin="-368,-40,438,0" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Width="250" Margin="380,5">
+                                <TextBox x:Name="Item_price" FontSize="20" HorizontalAlignment="Right" BorderBrush="#2A9D8F" BorderThickness="2" FontFamily="/Fonts/Poppins-Medium.ttf #Poppins" Foreground="Black" Width="168" Background="White" Height="45" Margin="-178,-65,260,0" VerticalAlignment="Center" />
+                                <TextBox x:Name="Item_qty" FontSize="20" HorizontalAlignment="Right" BorderBrush="#2A9D8F" BorderThickness="2" FontFamily="/Fonts/Poppins-Medium.ttf #Poppins" Foreground="Black" Width="152" Background="White" Height="45" Margin="0,-65,91.6,0" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Width="250" Margin="380,5"/>
+                            <StackPanel Width="250" Margin="380,5"/>
+                            <!-- input field end -->
+
+
+                            <StackPanel Width="300">
+                                <Button x:Name="Addtobill" Height="40" Style="{StaticResource MaterialDesignRaisedButton}"
+                                    materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" BorderBrush="#2A9D8F" Background="#2A9D8F" Foreground="White" 
+                                    ToolTip="Login"   Content="Add to Bill" Margin="-104,-25,282,0" FontFamily="/Fonts/Poppins-Medium.ttf #Poppins" Click="Addtobill_Click"  />
+                                <Button x:Name="reset" Height="40" Style="{StaticResource MaterialDesignRaisedButton}"
+                                    materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" BorderBrush="#2A9D8F" Background="#2A9D8F" Foreground="White" 
+                                    ToolTip="Login"   Content="Reset" Margin="59,-40,0,0" FontFamily="/Fonts/Poppins-Medium.ttf #Poppins" Click="reset_Click" HorizontalAlignment="Left" Width="122" />
+                            </StackPanel>
+
+
+                            <StackPanel Width="300"/>
+
+
+                            <StackPanel Width="300"/>
+
+
+                            <StackPanel Width="300"/>
+
+
+                        </StackPanel>
+                    </Border>
+
+
+                </StackPanel>
+                <DataGrid x:Name="Fullamt" HorizontalAlignment="Left" Height="299" Margin="659,79,0,0" VerticalAlignment="Top" Width="531" SelectionChanged="print" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Bill_No}" Header="Bill_No" Width="50"  />
+                        <DataGridTextColumn Binding="{Binding Issued_Date,StringFormat=\{0:dd.MM.yyyy\}}" Header="Issued_Date" Width="100"  />
+                        <DataGridTextColumn Binding="{Binding Customer_ID}" Header="Customer_ID" Width="60"  />
+                        <DataGridTextColumn Binding="{Binding Customer_Name}" Header="Customer_Name" Width="100"  />
+                        <DataGridTextColumn Binding="{Binding Emp_Name}" Header="Emp_Name" Width="100"  />
+                        <DataGridTextColumn Binding="{Binding Amount}" Header="Amount" Width="60"  />
+                        <DataGridTextColumn Binding="{Binding Product_ID}" Header="Product_ID" Width="50"  />
+                    </DataGrid.Columns>
+                </DataGrid>
+                <DataGrid x:Name="pets" SelectedItem="{Binding Path=SelectedPet, Mode=TwoWay }" HorizontalAlignment="Left" Height="235" Margin="100,465,0,0" VerticalAlignment="Top" Width="1000" Visibility="Hidden" SelectionChanged="petselect">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding PET_ID, Mode=OneWay}" Header="Pet-ID" Width="160"  />
+                        <DataGridTextColumn Binding="{Binding Pet_Name}" Header="Pet-Name" Width="160"  />
+                        <DataGridTextColumn Binding="{Binding Pet_Category}" Header="Pet-Category" Width="160"  />
+                        <DataGridTextColumn Binding="{Binding Quantity}" Header="Qty" Width="100"  />
+                        <DataGridTextColumn Binding="{Binding Pet_DOB,StringFormat=\{0:dd.MM.yyyy\}}" Header="Pet_DOB" Width="180"  />
+                        <DataGridTextColumn Binding="{Binding Unit_Price}" Header="Unit_Price" Width="180"  />
+
+
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <RadioButton x:Name="Productcheck" FontSize="25" FontFamily="/Fonts/Poppins-Medium.ttf #Poppins" Content="Products" HorizontalAlignment="Left" Margin="195,423,0,0" VerticalAlignment="Top" Width="137"  IsChecked="True" GroupName="tables" Click="radProducts"/>
+                <RadioButton x:Name="petcheck" FontSize="25" FontFamily="/Fonts/Poppins-Medium.ttf #Poppins" Content="Pets" HorizontalAlignment="Left" Margin="337,423,0,0" VerticalAlignment="Top"  GroupName="tables" Click="radPets"/>
+
+                <DataGrid  x:Name="Products"  SelectedItem="{Binding Path=SelectedProduct, Mode=TwoWay }" HorizontalAlignment="Left" Height="236" Margin="100,462,0,0" VerticalAlignment="Top" Width="1000" SelectionChanged="selectrow" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Product_ID, Mode=OneWay}" Header="Product-ID" Width="250"  />
+                        <DataGridTextColumn Binding="{Binding Product_Name}" Header="Product-Name" Width="250"  />
+                        <DataGridTextColumn Binding="{Binding Quantity}" Header="Quantity" Width="250"  />
+                        <DataGridTextColumn Binding="{Binding Price}" Header="Price" Width="250"  />
+
+                    </DataGrid.Columns>
+                </DataGrid>
+
+
+
+
+
+
+            </Grid>
+        </Grid>
+    </Border>
+
+
+</Window>
+
