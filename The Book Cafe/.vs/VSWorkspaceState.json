@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\PETCARE_Csharp"
   ],
-  "SelectedNode": "\\PETCARE_Csharp.sln",
+  "SelectedNode": "\\PETCARE_Csharp\\Home.xaml",
   "PreviewInSolutionExplorer": false
 }
