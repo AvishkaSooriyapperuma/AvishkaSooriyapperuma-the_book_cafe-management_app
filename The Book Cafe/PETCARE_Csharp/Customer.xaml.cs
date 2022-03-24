@@ -31,11 +31,11 @@ namespace PETCARE_Csharp
         }
 
 
-        SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-NLHM8LU;Initial Catalog=CutenFurry;Integrated Security=True");
+        SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-FLH7QV8;Initial Catalog=thebookcafe;Integrated Security=True");
 
         private void LoadGrid()
         {
-            Con.ConnectionString = ConfigurationManager.ConnectionStrings["CutenFurry"].ConnectionString;
+           
             SqlCommand cmd = new SqlCommand("select * from Customertbl", Con);
             DataTable dt = new DataTable();
             Con.Open();
@@ -44,25 +44,7 @@ namespace PETCARE_Csharp
             Con.Close();
             Customertbl.ItemsSource = dt.DefaultView;
         }
-    /*    private void Cusselect(object sender, SelectionChangedEventArgs e)
-        {
-            string phn;
-            string name;
-            string add;
-            
-            Object rw = Customertbl.SelectedItem;
-            name = (Customertbl.SelectedCells[1].Column.GetCellContent(rw) as TextBlock).Text;
-            add = (Customertbl.SelectedCells[2].Column.GetCellContent(rw) as TextBlock).Text;
-            phn = (Customertbl.SelectedCells[3].Column.GetCellContent(rw) as TextBlock).Text;
 
-
-            /* string testval2 = (Products.SelectedItem as ).ID;
-            Console.WriteLine( name + add + phn);
-            Customer_Name.Text = name;
-            Customer_Address.Text = add;
-            Customer_Phone.Text = phn;
-
-        }*/
 
 
 
@@ -78,7 +60,7 @@ namespace PETCARE_Csharp
                 try
                 {
                     Con.Open();
-                    SqlCommand cmd = new SqlCommand("insert into Customertbl (Customer_Name,Customer_Address,Customer_Phone) values(@ENa,@EA,@ED)", Con);
+                    SqlCommand cmd = new SqlCommand("insert into Customertbl (Customer_Name,Customer_Mailaddress,Customer_Phone) values(@ENa,@EA,@ED)", Con);
                     cmd.Parameters.AddWithValue("@ENa", Customer_Name.Text);
                     cmd.Parameters.AddWithValue("@EA", Customer_Address.Text);
                     cmd.Parameters.AddWithValue("@ED", Customer_Phone.Text);
@@ -108,7 +90,7 @@ namespace PETCARE_Csharp
 
         private void Displayresultdata()
         {
-            Con.ConnectionString = ConfigurationManager.ConnectionStrings["CutenFurry"].ConnectionString;
+            
             Con.Open();
             SqlCommand sc = new SqlCommand("Select * from Customertbl where Customer_ID=@EN", Con);
             sc.Parameters.AddWithValue("@EN", Int32.Parse(Cus_Name1.Text));
@@ -141,7 +123,7 @@ namespace PETCARE_Csharp
             if (Tg_Btn.IsChecked == true)
             {
                 tt_home.Visibility = Visibility.Collapsed;
-                tt_Pets.Visibility = Visibility.Collapsed;
+                
                 tt_Products.Visibility = Visibility.Collapsed;
                 tt_Employees.Visibility = Visibility.Collapsed;
                 tt_Customers.Visibility = Visibility.Collapsed;
@@ -151,7 +133,7 @@ namespace PETCARE_Csharp
             else
             {
                 tt_home.Visibility = Visibility.Visible;
-                tt_Pets.Visibility = Visibility.Visible;
+                
                 tt_Products.Visibility = Visibility.Visible;
                 tt_Employees.Visibility = Visibility.Visible;
                 tt_Customers.Visibility = Visibility.Visible;
@@ -168,21 +150,12 @@ namespace PETCARE_Csharp
         {
             User us = new User();
             string uname = us.getusrnm();
-            /*string cats = us.getcats().ToString();
-            string dogs = us.getdogs().ToString();
-            string fish = us.getfish().ToString();
-            string birds = us.getbirds().ToString();*/
             Home pg = new Home(uname);
             pg.Show();
             this.Hide();
         }
 
-        private void Petspg(object sender, MouseButtonEventArgs e)
-        {
-            Pets pg = new Pets();
-            pg.Show();
-            this.Hide();
-        }
+
 
         private void prodspg(object sender, MouseButtonEventArgs e)
         {
@@ -255,7 +228,7 @@ namespace PETCARE_Csharp
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
             Con.Open();
-            SqlCommand cmd = new SqlCommand("update Customertbl set Customer_Name ='" + Customer_Name.Text + "',Customer_Address ='" + Customer_Address.Text + "',Customer_Phone ='" + Customer_Phone.Text + "' where Customer_ID='"+ Cus_Name1.Text + "'", Con);
+            SqlCommand cmd = new SqlCommand("update Customertbl set Customer_Name ='" + Customer_Name.Text + "',Customer_Mailaddress ='" + Customer_Address.Text + "',Customer_Phone ='" + Customer_Phone.Text + "' where Customer_ID='"+ Cus_Name1.Text + "'", Con);
             try
             {
                 cmd.ExecuteNonQuery();

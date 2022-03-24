@@ -16,30 +16,35 @@ using System.Data;
 using System.Configuration;
 using System.Xaml;
 
+
+
 namespace PETCARE_Csharp
 {
     /// <summary>
-    /// Interaction logic for Products.xaml
+    /// Interaction logic for Employees.xaml
     /// </summary>
     public partial class Products : Window
     {
         public Products()
         {
             InitializeComponent();
+
             LoadGrid();
+
         }
-        SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-NLHM8LU;Initial Catalog=CutenFurry;Integrated Security=True");
-        
+
+        SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-FLH7QV8;Initial Catalog=thebookcafe;Integrated Security=True");
+
         private void LoadGrid()
         {
-            Con.ConnectionString = ConfigurationManager.ConnectionStrings["CutenFurry"].ConnectionString;
-            SqlCommand cmd = new SqlCommand("select * from productdetails", Con);
+
+            SqlCommand cmd = new SqlCommand("select * from book", Con);
             DataTable dt = new DataTable();
             Con.Open();
             SqlDataReader sdr = cmd.ExecuteReader();
             dt.Load(sdr);
             Con.Close();
-            Producttbl.ItemsSource = dt.DefaultView;
+            Booktbl.ItemsSource = dt.DefaultView;
         }
 
 
@@ -47,7 +52,7 @@ namespace PETCARE_Csharp
 
         private void Save_click(object sender, EventArgs e)
         {
-            if (Product_Name.Text == "" || Quantity.Text == "" || Price.Text == "")
+            if (Book_Name.Text == "" || Shelf_no.Text == "" || Price.Text == "" || Author.Text =="")
             {
                 MessageBox.Show("Some fields are empty", "Please Fill all the Information!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -56,11 +61,11 @@ namespace PETCARE_Csharp
                 try
                 {
                     Con.Open();
-                    SqlCommand cmd = new SqlCommand("insert into productdetails (Product_Name,Quantity,Price) values(@ENa,@EA,@ED)", Con);
-                    cmd.Parameters.AddWithValue("@ENa", Product_Name.Text);
-                    cmd.Parameters.AddWithValue("@EA", Quantity.Text);
+                    SqlCommand cmd = new SqlCommand("insert into book (book_name,shelf_no,price,author) values(@ENa,@EA,@ED,@EC)", Con);
+                    cmd.Parameters.AddWithValue("@ENa", Book_Name.Text);
+                    cmd.Parameters.AddWithValue("@EA", Shelf_no.Text);
                     cmd.Parameters.AddWithValue("@ED", Price.Text);
-
+                    cmd.Parameters.AddWithValue("@EC", Author.Text);
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Data has been added Successfully!", "", MessageBoxButton.OK, MessageBoxImage.Information);
                     Con.Close();
@@ -76,31 +81,32 @@ namespace PETCARE_Csharp
         }
         private void Clear()
         {
-            Product_Name.Clear();
-            Quantity.Clear();
+            Book_Name.Clear();
+            Shelf_no.Clear();
             Price.Clear();
-            Pro_Name1.Clear();
+            Author.Clear();
+            Emp_Name1.Clear();
 
         }
 
 
         private void Displayresultdata()
         {
-            Con.ConnectionString = ConfigurationManager.ConnectionStrings["CutenFurry"].ConnectionString;
+
             Con.Open();
-            SqlCommand sc = new SqlCommand("Select * from productdetails where Product_ID=@EN", Con);
-            sc.Parameters.AddWithValue("@EN", Int32.Parse(Pro_Name1.Text));
+            SqlCommand sc = new SqlCommand("Select * from book where book_id=@EN", Con);
+            sc.Parameters.AddWithValue("@EN", Int32.Parse(Emp_Name1.Text));
             SqlDataAdapter sda = new SqlDataAdapter(sc);
             DataTable dt = new DataTable();
             sda.Fill(dt);
-            Producttbl.ItemsSource = dt.DefaultView;
+            Booktbl.ItemsSource = dt.DefaultView;
             Con.Close();
         }
 
 
         private void Search_click(object sender, EventArgs e)
         {
-            if (Pro_Name1.Text == "")
+            if (Emp_Name1.Text == "")
             {
                 LoadGrid();
             }
@@ -119,7 +125,7 @@ namespace PETCARE_Csharp
             if (Tg_Btn.IsChecked == true)
             {
                 tt_home.Visibility = Visibility.Collapsed;
-                tt_Pets.Visibility = Visibility.Collapsed;
+
                 tt_Products.Visibility = Visibility.Collapsed;
                 tt_Employees.Visibility = Visibility.Collapsed;
                 tt_Customers.Visibility = Visibility.Collapsed;
@@ -129,7 +135,7 @@ namespace PETCARE_Csharp
             else
             {
                 tt_home.Visibility = Visibility.Visible;
-                tt_Pets.Visibility = Visibility.Visible;
+
                 tt_Products.Visibility = Visibility.Visible;
                 tt_Employees.Visibility = Visibility.Visible;
                 tt_Customers.Visibility = Visibility.Visible;
@@ -141,6 +147,46 @@ namespace PETCARE_Csharp
         {
 
         }
+
+        private void Home1_click(object sender, MouseButtonEventArgs e)
+        {
+            User us = new User();
+            string uname = us.getusrnm();
+
+            Home pg = new Home(uname);
+            pg.Show();
+            this.Hide();
+        }
+
+
+
+        private void prodspg(object sender, MouseButtonEventArgs e)
+        {
+            Products pg = new Products();
+            pg.Show();
+            this.Hide();
+        }
+
+        private void emppg(object sender, MouseButtonEventArgs e)
+        {
+            this.Show();
+
+        }
+
+        private void cuspg(object sender, MouseButtonEventArgs e)
+        {
+            Customer pg = new Customer();
+            pg.Show();
+            this.Hide();
+        }
+
+        private void billing_click(object sender, MouseButtonEventArgs e)
+        {
+            Billing pg = new Billing();
+            pg.Show();
+            this.Hide();
+        }
+
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
@@ -155,8 +201,8 @@ namespace PETCARE_Csharp
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
 
-            SqlCommand cmd = new SqlCommand("delete from productdetails where Product_ID=@EN ", Con);
-            cmd.Parameters.AddWithValue("@EN",Int32.Parse(Pro_Name1.Text) );
+            SqlCommand cmd = new SqlCommand("delete from book where book_id=@EN ", Con);
+            cmd.Parameters.AddWithValue("@EN", Int32.Parse(Emp_Name1.Text));
             Con.Open();
             try
             {
@@ -165,7 +211,7 @@ namespace PETCARE_Csharp
                 MessageBox.Show("Record has been deleted", "Deleted", MessageBoxButton.OK, MessageBoxImage.Information);
                 Con.Close();
 
-                Pro_Name1.Clear();
+                Emp_Name1.Clear();
                 LoadGrid();
 
                 Con.Close();
@@ -185,7 +231,7 @@ namespace PETCARE_Csharp
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
             Con.Open();
-            SqlCommand cmd = new SqlCommand("update productdetails set Product_Name ='" + Product_Name.Text + "',Quantity ='" + Quantity.Text + "',Price ='" + Price.Text + "'where Product_ID='"+Pro_Name1.Text+"'", Con);
+            SqlCommand cmd = new SqlCommand("update book set book_name ='" + Book_Name.Text + "',shelf_no ='" + Shelf_no.Text + "',price='" +Price.Text + "',author ='" + Author.Text + "' where emp_id='" + Emp_Name1.Text + "'", Con);
             try
             {
                 cmd.ExecuteNonQuery();
@@ -202,56 +248,17 @@ namespace PETCARE_Csharp
                 LoadGrid();
             }
         }
-        
-        private void Home1_click(object sender, MouseButtonEventArgs e)
-        {
-            User us = new User();
-            string uname=us.getusrnm();
-            Home pg = new Home(uname);
-            pg.Show();
-            this.Hide();
-        }
-
-        private void Petspg(object sender, MouseButtonEventArgs e)
-        {
-            Pets pg = new Pets();
-            pg.Show();
-            this.Hide();
-        }
-
-        private void prodspg(object sender, MouseButtonEventArgs e)
-        {
-            this.Show();
-        }
-
-        private void emppg(object sender, MouseButtonEventArgs e)
-        {
-            Employees pg = new Employees();
-            pg.Show();
-            this.Hide();
-        }
-
-        private void cuspg(object sender, MouseButtonEventArgs e)
-        {
-            Customer pg = new Customer();
-            pg.Show();
-            this.Hide();
-        }
-
-        private void billing_click(object sender, MouseButtonEventArgs e)
-        {
-            Billing pg = new Billing();
-            pg.Show();
-            this.Hide();
-        }
-
-       
 
         private void Lgut(object sender, MouseButtonEventArgs e)
         {
             login pg = new login();
             pg.Show();
             this.Hide();
+        }
+
+        private void ListViewItem_Selected(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

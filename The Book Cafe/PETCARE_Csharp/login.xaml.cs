@@ -28,7 +28,7 @@ namespace PETCARE_Csharp
         {
             InitializeComponent();
         }
-        SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-NLHM8LU;Initial Catalog=CutenFurry;Integrated Security=True");
+        SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-FLH7QV8;Initial Catalog=thebookcafe;Integrated Security=True");
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
             try

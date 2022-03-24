@@ -25,7 +25,7 @@ namespace PETCARE_Csharp
     /// </summary>
     public partial class Home : Window
     {
-        SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-NLHM8LU;Initial Catalog=CutenFurry;Integrated Security=True");
+        SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-FLH7QV8;Initial Catalog=thebookshop;Integrated Security=True");
         public Home(String Username)
         {
 
@@ -41,7 +41,7 @@ namespace PETCARE_Csharp
             if (Tg_Btn.IsChecked == true)
             {
                 tt_home.Visibility = Visibility.Collapsed;
-                tt_Pets.Visibility = Visibility.Collapsed;
+                
                 tt_Products.Visibility = Visibility.Collapsed;
                 tt_Employees.Visibility = Visibility.Collapsed;
                 tt_Customers.Visibility = Visibility.Collapsed;
@@ -51,7 +51,7 @@ namespace PETCARE_Csharp
             else
             {
                 tt_home.Visibility = Visibility.Visible;
-                tt_Pets.Visibility = Visibility.Visible;
+                
                 tt_Products.Visibility = Visibility.Visible;
                 tt_Employees.Visibility = Visibility.Visible;
                 tt_Customers.Visibility = Visibility.Visible;
@@ -73,12 +73,7 @@ namespace PETCARE_Csharp
             this.Show();
         }
 
-        private void Petspg(object sender, MouseButtonEventArgs e)
-        {
-            Pets pg = new Pets();
-            pg.Show();
-            this.Hide();
-        }
+       
 
         private void prodspg(object sender, MouseButtonEventArgs e)
         {

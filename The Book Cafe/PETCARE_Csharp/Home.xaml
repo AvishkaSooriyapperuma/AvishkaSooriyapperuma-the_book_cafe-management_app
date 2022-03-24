@@ -39,7 +39,7 @@
             <Setter Property="Height" Value="40"/>
             <Setter Property="Width" Value="100"/>
             <Setter Property="Margin" Value="20,20,20,20"/>
-            <Setter Property="Background" Value="#2A9D8F"/>
+            <Setter Property="Background" Value="#C8253E"/>
             <Setter Property="BorderBrush" Value="Transparent"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontFamily" Value="Fonts/Poppins-SemiBold.ttf"/>
@@ -404,29 +404,7 @@
                                 </StackPanel>
                             </ListViewItem>
 
-                            <!--Pets-->
-                            <ListViewItem HorizontalAlignment="Left"
-                                      Margin="0,0,0,20" MouseEnter="ListViewItem_MouseEnter">
-                                <!--Tooltip-->
-                                <ListViewItem.ToolTip>
-                                    <ToolTip x:Name="tt_Pets"
-                                         Content="Pets"
-                                         Style="{StaticResource tt_style}"/>
 
-                                </ListViewItem.ToolTip>
-                                <StackPanel Orientation="Horizontal"
-                                        Width="230">
-                                    <Image x:Name="pet" Source="Images/pets.png"
-                                       Stretch="None" Height="78" Width="88" RenderTransformOrigin="0.345,0.49" MouseLeftButtonDown="Petspg" 
-                                      
-                                       />
-
-                                    <TextBlock Text="Pets"
-                                           Margin="28,0,20,0"
-                                           Style="{StaticResource font_style}"/>
-
-                                </StackPanel>
-                            </ListViewItem>
                             <!--Products-->
                             <ListViewItem HorizontalAlignment="Left"
                                       Margin="0,0,0,20" MouseEnter="ListViewItem_MouseEnter">
@@ -439,8 +417,8 @@
                                 </ListViewItem.ToolTip>
                                 <StackPanel Orientation="Horizontal"
                                         Width="230">
-                                    <Image x:Name="prdcts" Source="Images/products.png"
-                                       Stretch="None" Width="84" MouseLeftButtonDown="prodspg" 
+                                    <Image x:Name="prdcts" Source="Images/book-logo.png"
+                                       Stretch="None" Width="84" MouseLeftButtonDown="prodspg" RenderTransformOrigin="0.661,0.5" 
                                       
                                        />
                                     <TextBlock Text="Products"
@@ -461,8 +439,8 @@
                                 </ListViewItem.ToolTip>
                                 <StackPanel Orientation="Horizontal"
                                         Width="230">
-                                    <Image x:Name="emp" Source="Images/Employees.png"
-                                       Stretch="None" Width="85" MouseLeftButtonDown="emppg" 
+                                    <Image x:Name="emp" Source="Images/employee.png"
+                                       Stretch="None" Width="70"  MouseLeftButtonDown="emppg" 
                                       
                                        />
                                     <TextBlock Text="Employees"

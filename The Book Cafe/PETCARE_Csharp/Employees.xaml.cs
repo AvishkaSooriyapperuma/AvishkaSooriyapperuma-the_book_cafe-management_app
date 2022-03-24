@@ -33,12 +33,12 @@ namespace PETCARE_Csharp
             
         }
 
-        SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-NLHM8LU;Initial Catalog=CutenFurry;Integrated Security=True");
+        SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-FLH7QV8;Initial Catalog=thebookcafe;Integrated Security=True");
 
         private void LoadGrid()
         {
-            Con.ConnectionString = ConfigurationManager.ConnectionStrings["CutenFurry"].ConnectionString;
-            SqlCommand cmd = new SqlCommand("select * from Employee", Con);
+            
+            SqlCommand cmd = new SqlCommand("select * from employee", Con);
             DataTable dt = new DataTable();
             Con.Open();
             SqlDataReader sdr = cmd.ExecuteReader();
@@ -61,7 +61,7 @@ namespace PETCARE_Csharp
                 try
                 {
                     Con.Open();
-                    SqlCommand cmd = new SqlCommand("insert into Employee (Emp_Name,Emp_Address,Emp_DOB,Emp_Cno) values(@ENa,@EA,@ED,@EC)",Con);
+                    SqlCommand cmd = new SqlCommand("insert into employee (emp_name,emp_add,emp_dob,emp_no) values(@ENa,@EA,@ED,@EC)",Con);
                     cmd.Parameters.AddWithValue("@ENa",Emp_Name.Text);
                     cmd.Parameters.AddWithValue("@EA", Emp_Address.Text);
                     cmd.Parameters.AddWithValue("@ED", Emp_DOB.Text);
@@ -92,9 +92,9 @@ namespace PETCARE_Csharp
        
         private void Displayresultdata()
         {
-            Con.ConnectionString = ConfigurationManager.ConnectionStrings["CutenFurry"].ConnectionString;
+            
             Con.Open();
-            SqlCommand sc = new SqlCommand("Select * from Employee where Emp_ID=@EN",Con);           
+            SqlCommand sc = new SqlCommand("Select * from Employee where emp_id=@EN",Con);           
             sc.Parameters.AddWithValue("@EN",Int32.Parse(Emp_Name1.Text));         
             SqlDataAdapter sda = new SqlDataAdapter(sc);
             DataTable dt = new DataTable( );
@@ -125,7 +125,7 @@ namespace PETCARE_Csharp
             if (Tg_Btn.IsChecked == true)
             {
                 tt_home.Visibility = Visibility.Collapsed;
-                tt_Pets.Visibility = Visibility.Collapsed;
+                
                 tt_Products.Visibility = Visibility.Collapsed;
                 tt_Employees.Visibility = Visibility.Collapsed;
                 tt_Customers.Visibility = Visibility.Collapsed;
@@ -135,7 +135,7 @@ namespace PETCARE_Csharp
             else
             {
                 tt_home.Visibility = Visibility.Visible;
-                tt_Pets.Visibility = Visibility.Visible;
+                
                 tt_Products.Visibility = Visibility.Visible;
                 tt_Employees.Visibility = Visibility.Visible;
                 tt_Customers.Visibility = Visibility.Visible;
@@ -158,12 +158,7 @@ namespace PETCARE_Csharp
            this.Hide();
         }
 
-        private void Petspg(object sender, MouseButtonEventArgs e)
-        {
-            Pets pg = new Pets();
-            pg.Show();
-            this.Hide();
-        }
+    
 
         private void prodspg(object sender, MouseButtonEventArgs e)
         {
@@ -206,7 +201,7 @@ namespace PETCARE_Csharp
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
             
-            SqlCommand cmd = new SqlCommand("delete from Employee where Emp_ID=@EN ",Con );
+            SqlCommand cmd = new SqlCommand("delete from employee where emp_id=@EN ",Con );
             cmd.Parameters.AddWithValue("@EN", Int32.Parse(Emp_Name1.Text));
             Con.Open();
             try
@@ -235,8 +230,8 @@ namespace PETCARE_Csharp
 
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
-            Con.Open();
-            SqlCommand cmd = new SqlCommand("update Employee set Emp_Name ='"+Emp_Name.Text+"',Emp_Address ='"+Emp_Address.Text+"',Emp_DOB ='"+Emp_DOB.Text+"',Emp_Cno ='"+Emp_Cno.Text+"' where Emp_ID='"+Emp_Name1.Text+"'",Con);
+                Con.Open();
+            SqlCommand cmd = new SqlCommand("update employee set emp_name ='"+Emp_Name.Text+"',emp_add ='"+Emp_Address.Text+"',emp_dob ='"+Emp_DOB.Text+"',emp_no ='"+Emp_Cno.Text+"' where emp_id='"+Emp_Name1.Text+"'",Con);
             try
             {
                 cmd.ExecuteNonQuery();
@@ -259,6 +254,11 @@ namespace PETCARE_Csharp
             login pg = new login();
             pg.Show();
             this.Hide();
+        }
+
+        private void ListViewItem_Selected(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

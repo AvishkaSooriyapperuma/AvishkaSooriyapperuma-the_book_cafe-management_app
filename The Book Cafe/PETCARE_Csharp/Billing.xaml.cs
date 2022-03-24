@@ -30,7 +30,7 @@ namespace PETCARE_Csharp
         private int pid;
         private string price;
         private string billid;
-        SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-NLHM8LU;Initial Catalog=CutenFurry;Integrated Security=True");
+        SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-FLH7QV8;Initial Catalog=thebookcafe;Integrated Security=True");
         public Billing()
         {
             InitializeComponent();
@@ -43,7 +43,7 @@ namespace PETCARE_Csharp
             if (Tg_Btn.IsChecked == true)
             {
                 tt_home.Visibility = Visibility.Collapsed;
-                tt_Pets.Visibility = Visibility.Collapsed;
+                
                 tt_Products.Visibility = Visibility.Collapsed;
                 tt_Employees.Visibility = Visibility.Collapsed;
                 tt_Customers.Visibility = Visibility.Collapsed;
@@ -53,7 +53,7 @@ namespace PETCARE_Csharp
             else
             {
                 tt_home.Visibility = Visibility.Visible;
-                tt_Pets.Visibility = Visibility.Visible;
+                
                 tt_Products.Visibility = Visibility.Visible;
                 tt_Employees.Visibility = Visibility.Visible;
                 tt_Customers.Visibility = Visibility.Visible;
@@ -77,12 +77,7 @@ namespace PETCARE_Csharp
             this.Hide();
         }
 
-        private void Petspg(object sender, MouseButtonEventArgs e)
-        {
-            Pets pg = new Pets();
-            pg.Show();
-            this.Hide();
-        }
+     
 
         private void prodspg(object sender, MouseButtonEventArgs e)
         {
@@ -120,8 +115,8 @@ namespace PETCARE_Csharp
         private void LoadGrid()
         {
 
-            Con.ConnectionString = ConfigurationManager.ConnectionStrings["CutenFurry"].ConnectionString;
-            SqlCommand cmd = new SqlCommand("select * from Petdetails", Con);
+            
+            SqlCommand cmd = new SqlCommand("select * from book", Con);
             DataTable dt = new DataTable();
             Con.Open();
             SqlDataReader sdr = cmd.ExecuteReader();
@@ -130,21 +125,15 @@ namespace PETCARE_Csharp
             pets.ItemsSource = dt.DefaultView;
 
 
-            Con.ConnectionString = ConfigurationManager.ConnectionStrings["CutenFurry"].ConnectionString;
-            SqlCommand cmd2 = new SqlCommand("select * from productdetails", Con);
-            DataTable dt2 = new DataTable();
-            Con.Open();
-            SqlDataReader sdr2 = cmd2.ExecuteReader();
-            dt2.Load(sdr2);
-            Con.Close();
-            Products.ItemsSource = dt2.DefaultView;
+            
+        
         }
 
         private void Loadbilldetails()
         {
             try
             {            
-               Con.ConnectionString = ConfigurationManager.ConnectionStrings["CutenFurry"].ConnectionString;
+               Con.ConnectionString = ConfigurationManager.ConnectionStrings["thebookcafe"].ConnectionString;
                 SqlCommand cmd = new SqlCommand("SELECT * FROM Billingtbl WHERE Bill_No=(select max(Bill_No) from Billingtbl)", Con);
                 DataTable dt = new DataTable();
                 Con.Open();
@@ -164,7 +153,7 @@ namespace PETCARE_Csharp
         {
             try
             {
-                Con.ConnectionString = ConfigurationManager.ConnectionStrings["CutenFurry"].ConnectionString;
+                Con.ConnectionString = ConfigurationManager.ConnectionStrings["thebookcafe"].ConnectionString;
                 SqlCommand cmd = new SqlCommand("SELECT * FROM Billingtbl WHERE Bill_No=(select max(Bill_No) from Billingtbl)", Con);
                 DataTable dt = new DataTable();
                 Con.Open();
@@ -231,8 +220,7 @@ namespace PETCARE_Csharp
         private void Addtobill_Click(object sender, RoutedEventArgs e)
         {
 
-            if (Productcheck.IsChecked == true && petcheck.IsChecked == false)
-            {
+           
                 if (Customer_ID.Text == "" || Customer_Name.Text == "" || Item_Name1.Text == "" || Item_price.Text == "" || Item_qty.Text == "")
                 {
                     MessageBox.Show("Please fill all the input fields", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -267,45 +255,7 @@ namespace PETCARE_Csharp
                     {
                         MessageBox.Show(ex.Message);
                     }
-                }
-            }
-            else
-            {
-                if (Customer_ID.Text == "" || Customer_Name.Text == "" || Item_Name1.Text == "" || Item_price.Text == "" || Item_qty.Text == "")
-                {
-                    MessageBox.Show("Please fill all the input fields", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-                else
-                {
-                    string Date;
-                    User us = new User();
-                    DateTime dt = DateTime.Now;
-                    Date = dt.ToString();
-
-                    bill bl = new bill(name, price, Item_qty.Text, Customer_ID.Text, Customer_Name.Text, us.getusrnm(), Date);
-
-                    try
-                    {
-                        Con.Open();
-                        SqlCommand cmd = new SqlCommand("insert into Billingtbl (Issued_Date,Customer_ID,Customer_Name,Emp_Name,Amount,Product_ID) values(@ISD,@CID,@CUN,@EMN,@AMT,@PID)", Con);
-                        cmd.Parameters.AddWithValue("@ISD", Date);
-                        cmd.Parameters.AddWithValue("@CID", bl.get_cusid());
-                        cmd.Parameters.AddWithValue("@CUN", bl.get_cusname());
-                        cmd.Parameters.AddWithValue("@EMN", bl.get_empname());
-                        cmd.Parameters.AddWithValue("@AMT", bl.get_totalprice());
-                        cmd.Parameters.AddWithValue("@PID", pid);
-                        cmd.ExecuteNonQuery();
-                        MessageBox.Show("Data has been added Successfully!", "", MessageBoxButton.OK, MessageBoxImage.Information);
-
-                        Con.Close();
-                        Loadbilldetailsforpets();
-                        Clear();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-                }
+                
             }
         }
         private void Clear()
@@ -355,7 +305,7 @@ namespace PETCARE_Csharp
             {
                 using (StreamWriter sw = File.CreateText(path))
                 {
-                    sw.WriteLine("========================Cute n Furry================================");
+                    sw.WriteLine("========================The Book Cafe================================");
                     sw.WriteLine("Reciept No: - "+billid);
                     sw.WriteLine("Issued Date: - "+date);
                     sw.WriteLine("Customer: - "+cus_name);
@@ -377,7 +327,7 @@ namespace PETCARE_Csharp
         {
             if (Customer_ID.Text != "")
             {
-                Con.ConnectionString = ConfigurationManager.ConnectionStrings["CutenFurry"].ConnectionString;
+                Con.ConnectionString = ConfigurationManager.ConnectionStrings["thebookcafe"].ConnectionString;
                 Con.Open();
                 SqlCommand sc = new SqlCommand("Select * from Customertbl where Customer_ID=@EN", Con);
                 sc.Parameters.AddWithValue("@EN", Int32.Parse(Customer_ID.Text));

@@ -107,7 +107,7 @@
                 <Grid x:Name="nav_pnl"
                   HorizontalAlignment="Left"
                   Width="90"                  
-                  Background="#2A9D8F">
+                  Background="#C8253E">
 
                     <StackPanel x:Name="st_pnl">
                         <!--Grid for all toggle menu button-->
@@ -251,28 +251,6 @@
                             </ListViewItem>
 
                             <!--Pets-->
-                            <ListViewItem HorizontalAlignment="Left"
-                                      Margin="0,0,0,20" MouseEnter="ListViewItem_MouseEnter">
-                                <!--Tooltip-->
-                                <ListViewItem.ToolTip>
-                                    <ToolTip x:Name="tt_Pets"
-                                         Content="Pets"
-                                         Style="{StaticResource tt_style}"/>
-
-                                </ListViewItem.ToolTip>
-                                <StackPanel Orientation="Horizontal"
-                                        Width="230">
-                                    <Image x:Name="pet" Source="Images/pets.png"
-                                       Stretch="None" Height="78" Width="88" RenderTransformOrigin="0.345,0.49" MouseLeftButtonDown="Petspg" 
-                                      
-                                       />
-
-                                    <TextBlock Text="Pets"
-                                           Margin="28,0,20,0"
-                                           Style="{StaticResource font_style}"/>
-
-                                </StackPanel>
-                            </ListViewItem>
                             <!--Products-->
                             <ListViewItem HorizontalAlignment="Left"
                                       Margin="0,0,0,20" MouseEnter="ListViewItem_MouseEnter">
@@ -285,8 +263,7 @@
                                 </ListViewItem.ToolTip>
                                 <StackPanel Orientation="Horizontal"
                                         Width="230">
-                                    <Image x:Name="prdcts" Source="Images/products.png"
-                                       Stretch="None" Width="84" MouseLeftButtonDown="prodspg" 
+                                    <Image x:Name="prdcts" Source="Images/book-logo.png"                                                  Stretch="None" Width="84" MouseLeftButtonDown="prodspg" 
                                       
                                        />
                                     <TextBlock Text="Products"
@@ -307,7 +284,7 @@
                                 </ListViewItem.ToolTip>
                                 <StackPanel Orientation="Horizontal"
                                         Width="230">
-                                    <Image x:Name="emp" Source="Images/Employees.png"
+                                    <Image x:Name="emp" Source="Images/employee.png"
                                        Stretch="None" Width="85" MouseLeftButtonDown="emppg" 
                                       
                                        />
@@ -400,19 +377,19 @@
                     <Border Height="177" CornerRadius="20" Background="White" Margin="0,-60,654,0" BorderThickness="2" BorderBrush="#D9D9D9">
                         <StackPanel Width="1010" Height="300">
                             <StackPanel Width="250" Margin="380,5">
-                                <TextBlock Text="Customer ID" HorizontalAlignment="Right" FontSize="25" FontFamily="/Fonts/Poppins-Medium.ttf #Poppins" Foreground="#2A9D8F" Margin="-359,50,436.6,0" Width="172" />
+                                <TextBlock Text="Customer ID" HorizontalAlignment="Right" FontSize="25" FontFamily="/Fonts/Poppins-Medium.ttf #Poppins" Foreground="#000" Margin="-359,50,436.6,0" Width="172" />
                             </StackPanel>
                             <StackPanel Width="250" Margin="380,5">
-                                <TextBlock Text="Customer Name" HorizontalAlignment="Right" FontSize="25" FontFamily="/Fonts/Poppins-Medium.ttf #Poppins" Foreground="#2A9D8F" Margin="-157,-48,193.6,0" Width="213" />
-                                <TextBlock Text="Customer" HorizontalAlignment="Right" FontSize="30" FontFamily="/Fonts/Poppins-Bold.ttf #Poppins" Foreground="#2A9D8F" Margin="-361,-130,413.6,0" Width="197" Height="54" />
+                                <TextBlock Text="Customer Name" HorizontalAlignment="Right" FontSize="25" FontFamily="/Fonts/Poppins-Medium.ttf #Poppins" Foreground="#000" Margin="-157,-48,193.6,0" Width="213" />
+                                <TextBlock Text="Customer" HorizontalAlignment="Right" FontSize="30" FontFamily="/Fonts/Poppins-Bold.ttf #Poppins" Foreground="#000" Margin="-361,-130,413.6,0" Width="197" Height="54" />
                             </StackPanel>
                             <StackPanel Width="250" Margin="380,5"/>
                             <StackPanel Width="250" Margin="380,5"/>
                             <StackPanel Width="250" Margin="380,5">
-                                <TextBox x:Name="Customer_ID" FontSize="20" HorizontalAlignment="Right"  BorderThickness="2" FontFamily="/Fonts/Poppins-Medium.ttf #Poppins" Foreground="Black" BorderBrush="#2A9D8F" Width="180" Background="White" Height="45" Margin="-362,-20,431.6,0" VerticalAlignment="Center" TextChanged="idChanged" />
+                                <TextBox x:Name="Customer_ID" FontSize="20" HorizontalAlignment="Right"  BorderThickness="2" FontFamily="/Fonts/Poppins-Medium.ttf #Poppins" Foreground="Black" BorderBrush="#C8253E" Width="180" Background="White" Height="45" Margin="-362,-20,431.6,0" VerticalAlignment="Center" TextChanged="idChanged" />
                             </StackPanel>
                             <StackPanel Width="250" Margin="380,5">
-                                <TextBox x:Name="Customer_Name" FontSize="20" HorizontalAlignment="Right"  FontFamily="/Fonts/Poppins-Medium.ttf #Poppins" Foreground="Black" BorderBrush="#2A9D8F" Width="180" Background="White" BorderThickness="2" Height="45" Margin="-160,-65,229.6,0" VerticalAlignment="Center" />
+                                <TextBox x:Name="Customer_Name" FontSize="20" HorizontalAlignment="Right"  FontFamily="/Fonts/Poppins-Medium.ttf #Poppins" Foreground="Black" BorderBrush="#C8253E" Width="180" Background="White" BorderThickness="2" Height="45" Margin="-160,-65,229.6,0" VerticalAlignment="Center" />
                             </StackPanel>
                             <StackPanel Width="250" Margin="380,5"/>
                             <StackPanel Width="250" Margin="380,5"/>
@@ -436,21 +413,21 @@
                     <Border Height="213" CornerRadius="20" Background="White" Margin="0,10,545,0" BorderBrush="#D9D9D9" BorderThickness="2" >
                         <StackPanel Width="1010" Height="300">
                             <StackPanel Width="250" Margin="380,5">
-                                <TextBlock Text="Name" HorizontalAlignment="Right" FontSize="25" FontFamily="/Fonts/Poppins-Medium.ttf #Poppins" Foreground="#2A9D8F" Margin="-367,50,540.6,0" />
+                                <TextBlock Text="Name" HorizontalAlignment="Right" FontSize="25" FontFamily="/Fonts/Poppins-Medium.ttf #Poppins" Foreground="black" Margin="-367,50,540.6,0" />
                             </StackPanel>
                             <StackPanel Width="250" Margin="380,5">
-                                <TextBlock Text="Unit Price" HorizontalAlignment="Right" FontSize="25" FontFamily="/Fonts/Poppins-Medium.ttf #Poppins" Foreground="#2A9D8F" Margin="-176,-48,284,0" Width="142" />
-                                <TextBlock Text="Quantity" HorizontalAlignment="Right" FontSize="25" FontFamily="/Fonts/Poppins-Medium.ttf #Poppins" Foreground="#2A9D8F" Margin="0,-48,98.6,0" Width="142" />
-                                <TextBlock Text="Items" HorizontalAlignment="Right" FontSize="30" FontFamily="/Fonts/Poppins-Bold.ttf #Poppins" Foreground="#2A9D8F" Margin="-367,-145,474.6,0" Width="142" Height="38" />
+                                <TextBlock Text="Unit Price" HorizontalAlignment="Right" FontSize="25" FontFamily="/Fonts/Poppins-Medium.ttf #Poppins" Foreground="black" Margin="-176,-48,284,0" Width="142" />
+                                <TextBlock Text="Quantity" HorizontalAlignment="Right" FontSize="25" FontFamily="/Fonts/Poppins-Medium.ttf #Poppins" Foreground="#000" Margin="0,-48,98.6,0" Width="142" />
+                                <TextBlock Text="Items" HorizontalAlignment="Right" FontSize="30" FontFamily="/Fonts/Poppins-Bold.ttf #Poppins" Foreground="#000" Margin="-367,-145,474.6,0" Width="142" Height="38" />
                             </StackPanel>
                             <StackPanel Width="250" Margin="380,5"/>
                             <StackPanel Width="250" Margin="380,5"/>
                             <StackPanel Width="250" Margin="380,5">
-                                <TextBox x:Name="Item_Name1" FontSize="20" HorizontalAlignment="Right"  FontFamily="/Fonts/Poppins-Medium.ttf #Poppins" Foreground="Black" Width="180" Background="White" BorderBrush="#2A9D8F" BorderThickness="2" Height="45" Margin="-368,-40,438,0" VerticalAlignment="Center" />
+                                <TextBox x:Name="Item_Name1" FontSize="20" HorizontalAlignment="Right"  FontFamily="/Fonts/Poppins-Medium.ttf #Poppins" Foreground="Black" Width="180" Background="White" BorderBrush="#C8253E" BorderThickness="2" Height="45" Margin="-368,-40,438,0" VerticalAlignment="Center" />
                             </StackPanel>
                             <StackPanel Width="250" Margin="380,5">
-                                <TextBox x:Name="Item_price" FontSize="20" HorizontalAlignment="Right" BorderBrush="#2A9D8F" BorderThickness="2" FontFamily="/Fonts/Poppins-Medium.ttf #Poppins" Foreground="Black" Width="168" Background="White" Height="45" Margin="-178,-65,260,0" VerticalAlignment="Center" />
-                                <TextBox x:Name="Item_qty" FontSize="20" HorizontalAlignment="Right" BorderBrush="#2A9D8F" BorderThickness="2" FontFamily="/Fonts/Poppins-Medium.ttf #Poppins" Foreground="Black" Width="152" Background="White" Height="45" Margin="0,-65,91.6,0" VerticalAlignment="Center" />
+                                <TextBox x:Name="Item_price" FontSize="20" HorizontalAlignment="Right" BorderBrush="#C8253E" BorderThickness="2" FontFamily="/Fonts/Poppins-Medium.ttf #Poppins" Foreground="Black" Width="168" Background="White" Height="45" Margin="-178,-65,260,0" VerticalAlignment="Center" />
+                                <TextBox x:Name="Item_qty" FontSize="20" HorizontalAlignment="Right" BorderBrush="#C8253E" BorderThickness="2" FontFamily="/Fonts/Poppins-Medium.ttf #Poppins" Foreground="Black" Width="152" Background="White" Height="45" Margin="0,-65,91.6,0" VerticalAlignment="Center" />
                             </StackPanel>
                             <StackPanel Width="250" Margin="380,5"/>
                             <StackPanel Width="250" Margin="380,5"/>
@@ -459,10 +436,10 @@
 
                             <StackPanel Width="300">
                                 <Button x:Name="Addtobill" Height="40" Style="{StaticResource MaterialDesignRaisedButton}"
-                                    materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" BorderBrush="#2A9D8F" Background="#2A9D8F" Foreground="White" 
+                                    materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" BorderBrush="#C8253E" Background="#C8253E" Foreground="White" 
                                     ToolTip="Login"   Content="Add to Bill" Margin="-104,-25,282,0" FontFamily="/Fonts/Poppins-Medium.ttf #Poppins" Click="Addtobill_Click"  />
                                 <Button x:Name="reset" Height="40" Style="{StaticResource MaterialDesignRaisedButton}"
-                                    materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" BorderBrush="#2A9D8F" Background="#2A9D8F" Foreground="White" 
+                                    materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" BorderBrush="#C8253E" Background="#C8253E" Foreground="White" 
                                     ToolTip="Login"   Content="Reset" Margin="59,-40,0,0" FontFamily="/Fonts/Poppins-Medium.ttf #Poppins" Click="reset_Click" HorizontalAlignment="Left" Width="122" />
                             </StackPanel>
 
@@ -505,8 +482,7 @@
                     </DataGrid.Columns>
                 </DataGrid>
 
-                <RadioButton x:Name="Productcheck" FontSize="25" FontFamily="/Fonts/Poppins-Medium.ttf #Poppins" Content="Products" HorizontalAlignment="Left" Margin="195,423,0,0" VerticalAlignment="Top" Width="137"  IsChecked="True" GroupName="tables" Click="radProducts"/>
-                <RadioButton x:Name="petcheck" FontSize="25" FontFamily="/Fonts/Poppins-Medium.ttf #Poppins" Content="Pets" HorizontalAlignment="Left" Margin="337,423,0,0" VerticalAlignment="Top"  GroupName="tables" Click="radPets"/>
+                
 
                 <DataGrid  x:Name="Products"  SelectedItem="{Binding Path=SelectedProduct, Mode=TwoWay }" HorizontalAlignment="Left" Height="236" Margin="100,462,0,0" VerticalAlignment="Top" Width="1000" SelectionChanged="selectrow" >
                     <DataGrid.Columns>
