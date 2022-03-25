@@ -439,7 +439,7 @@
                         <materialDesign:PackIcon Kind="Close" Foreground="#2A9D8F" Width="30" Height="30" />
                     </Button>
                 </StackPanel>
-                <Label  FontFamily="/Fonts/Poppins-Medium.ttf #Poppins" Content="Employee Details" HorizontalAlignment="Left" Margin="196,378,0,262" FontSize="35" VerticalAlignment="Center"/>
+                <Label  FontFamily="/Fonts/Poppins-Medium.ttf #Poppins" Content="Books" HorizontalAlignment="Left" Margin="128,378,0,0" FontSize="35" VerticalAlignment="Top"/>
 
                 <Label  FontFamily="/Fonts/Poppins-Medium.ttf #Poppins" Content="Search ID" HorizontalAlignment="Left" Margin="656,387,0,267" FontSize="25" VerticalAlignment="Center"/>
 
@@ -459,11 +459,11 @@
 
                 <DataGrid x:Name="Booktbl" FontFamily="/Fonts/Poppins-Medium.ttf #Poppins" FontSize="20" AutoGenerateColumns="True" HorizontalAlignment="Left" Height="249" Margin="128,441,0,0" VerticalAlignment="Top" Width="1000" SelectionChanged="Employeetbl_SelectionChanged" HorizontalGridLinesBrush="#363636" VerticalGridLinesBrush="#FFA6B0AF" SelectionMode="Single">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding book_id}" Header="Book-ID" Width="200"  />
-                        <DataGridTextColumn Binding="{Binding book_name}" Header="Book-Name" Width="200"  />
-                        <DataGridTextColumn Binding="{Binding shelf_no}" Header="Shelf-No." Width="200"  />
-                        <DataGridTextColumn Binding="{Binding price}" Header="Price" Width="200"  />
-                        <DataGridTextColumn Binding="{Binding author}" Header="Author" Width="200"  />
+                        <DataGridTextColumn Binding="{Binding book_id}" Header="Book-ID" Width="150"  />
+                        <DataGridTextColumn Binding="{Binding book_name}" Header="Book-Name" Width="250"  />
+                        <DataGridTextColumn Binding="{Binding shelf_no}" Header="Shelf-No." Width="150"  />
+                        <DataGridTextColumn Binding="{Binding price}" Header="Price" Width="180"  />
+                        <DataGridTextColumn Binding="{Binding author}" Header="Author" Width="280"  />
 
 
 

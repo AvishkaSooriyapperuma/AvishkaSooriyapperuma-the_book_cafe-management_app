@@ -37,7 +37,7 @@
             <Setter Property="Height" Value="40"/>
             <Setter Property="Width" Value="100"/>
             <Setter Property="Margin" Value="20,20,20,20"/>
-            <Setter Property="Background" Value="#2A9D8F"/>
+            <Setter Property="Background" Value="#363636"/>
             <Setter Property="BorderBrush" Value="Transparent"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontFamily" Value="Fonts/Poppins-SemiBold.ttf"/>
@@ -205,10 +205,10 @@
                                                         </MultiTrigger.Conditions>
                                                         <Setter Property="Background"
                                                             TargetName="Bd"
-                                                            Value="#61ABA2"/>
+                                                            Value="#363636"/>
                                                         <Setter Property="BorderBrush"
                                                             TargetName="Bd"
-                                                            Value="#61ABA2"/>
+                                                            Value="#363636"/>
                                                     </MultiTrigger>
                                                 </ControlTemplate.Triggers>
                                             </ControlTemplate>
@@ -460,36 +460,25 @@
                 </StackPanel>
                 <DataGrid x:Name="Fullamt" HorizontalAlignment="Left" Height="299" Margin="659,79,0,0" VerticalAlignment="Top" Width="531" SelectionChanged="print" >
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Bill_No}" Header="Bill_No" Width="50"  />
-                        <DataGridTextColumn Binding="{Binding Issued_Date,StringFormat=\{0:dd.MM.yyyy\}}" Header="Issued_Date" Width="100"  />
-                        <DataGridTextColumn Binding="{Binding Customer_ID}" Header="Customer_ID" Width="60"  />
-                        <DataGridTextColumn Binding="{Binding Customer_Name}" Header="Customer_Name" Width="100"  />
-                        <DataGridTextColumn Binding="{Binding Emp_Name}" Header="Emp_Name" Width="100"  />
-                        <DataGridTextColumn Binding="{Binding Amount}" Header="Amount" Width="60"  />
-                        <DataGridTextColumn Binding="{Binding Product_ID}" Header="Product_ID" Width="50"  />
+                        <DataGridTextColumn Binding="{Binding bill_no}" Header="Bill_No" Width="50"  />
+                        <DataGridTextColumn Binding="{Binding Issued_date,StringFormat=\{0:dd.MM.yyyy\}}" Header="Issued_Date" Width="100"  />
+                        <DataGridTextColumn Binding="{Binding customer_id}" Header="Customer_ID" Width="60"  />
+                        <DataGridTextColumn Binding="{Binding customer_name}" Header="Customer_Name" Width="100"  />
+                        <DataGridTextColumn Binding="{Binding emp_name}" Header="Emp_Name" Width="100"  />
+                        <DataGridTextColumn Binding="{Binding amount}" Header="Amount" Width="60"  />
+                        <DataGridTextColumn Binding="{Binding product_id}" Header="Product_ID" Width="50"  />
                     </DataGrid.Columns>
                 </DataGrid>
-                <DataGrid x:Name="pets" SelectedItem="{Binding Path=SelectedPet, Mode=TwoWay }" HorizontalAlignment="Left" Height="235" Margin="100,465,0,0" VerticalAlignment="Top" Width="1000" Visibility="Hidden" SelectionChanged="petselect">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding PET_ID, Mode=OneWay}" Header="Pet-ID" Width="160"  />
-                        <DataGridTextColumn Binding="{Binding Pet_Name}" Header="Pet-Name" Width="160"  />
-                        <DataGridTextColumn Binding="{Binding Pet_Category}" Header="Pet-Category" Width="160"  />
-                        <DataGridTextColumn Binding="{Binding Quantity}" Header="Qty" Width="100"  />
-                        <DataGridTextColumn Binding="{Binding Pet_DOB,StringFormat=\{0:dd.MM.yyyy\}}" Header="Pet_DOB" Width="180"  />
-                        <DataGridTextColumn Binding="{Binding Unit_Price}" Header="Unit_Price" Width="180"  />
-
-
-                    </DataGrid.Columns>
-                </DataGrid>
-
+  
                 
 
-                <DataGrid  x:Name="Products"  SelectedItem="{Binding Path=SelectedProduct, Mode=TwoWay }" HorizontalAlignment="Left" Height="236" Margin="100,462,0,0" VerticalAlignment="Top" Width="1000" SelectionChanged="selectrow" >
+                <DataGrid  x:Name="Products"   HorizontalAlignment="Left" Height="236" Margin="100,462,0,0" VerticalAlignment="Top" Width="1000" SelectionChanged="selectrow" >
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Product_ID, Mode=OneWay}" Header="Product-ID" Width="250"  />
-                        <DataGridTextColumn Binding="{Binding Product_Name}" Header="Product-Name" Width="250"  />
-                        <DataGridTextColumn Binding="{Binding Quantity}" Header="Quantity" Width="250"  />
-                        <DataGridTextColumn Binding="{Binding Price}" Header="Price" Width="250"  />
+                        <DataGridTextColumn Binding="{Binding book_id, Mode=OneWay}" Header="Book-ID" Width="250"  />
+                        <DataGridTextColumn Binding="{Binding book_name}" Header="Book-Name" Width="250"  />
+                        <DataGridTextColumn Binding="{Binding shelf_no}" Header="Shelf-No" Width="120"  />
+                        <DataGridTextColumn Binding="{Binding price}" Header="Price" Width="150"  />
+                        <DataGridTextColumn Binding="{Binding author}" Header="Author" Width="230"  />
 
                     </DataGrid.Columns>
                 </DataGrid>

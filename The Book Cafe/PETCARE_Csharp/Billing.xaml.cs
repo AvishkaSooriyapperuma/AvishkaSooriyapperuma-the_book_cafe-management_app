@@ -122,7 +122,7 @@ namespace PETCARE_Csharp
             SqlDataReader sdr = cmd.ExecuteReader();
             dt.Load(sdr);
             Con.Close();
-            pets.ItemsSource = dt.DefaultView;
+            Products.ItemsSource = dt.DefaultView;
 
 
             
@@ -134,7 +134,7 @@ namespace PETCARE_Csharp
             try
             {            
                Con.ConnectionString = ConfigurationManager.ConnectionStrings["thebookcafe"].ConnectionString;
-                SqlCommand cmd = new SqlCommand("SELECT * FROM Billingtbl WHERE Bill_No=(select max(Bill_No) from Billingtbl)", Con);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Billingtbl WHERE bill_no=(select max(bill_no) from Billingtbl)", Con);
                 DataTable dt = new DataTable();
                 Con.Open();
                 SqlDataReader sdr = cmd.ExecuteReader();
@@ -149,39 +149,16 @@ namespace PETCARE_Csharp
 
         }//another one needed.
 
-        private void Loadbilldetailsforpets()
-        {
-            try
-            {
-                Con.ConnectionString = ConfigurationManager.ConnectionStrings["thebookcafe"].ConnectionString;
-                SqlCommand cmd = new SqlCommand("SELECT * FROM Billingtbl WHERE Bill_No=(select max(Bill_No) from Billingtbl)", Con);
-                DataTable dt = new DataTable();
-                Con.Open();
-                SqlDataReader sdr = cmd.ExecuteReader();
-                dt.Load(sdr);
-                Con.Close();
-                Fullamt.ItemsSource = dt.DefaultView;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-        }
 
 
 
         private void radProducts(object sender, RoutedEventArgs e)
         {
             Products.Visibility = Visibility.Visible;
-            pets.Visibility = Visibility.Hidden;
+            
         }
 
-        private void radPets(object sender, RoutedEventArgs e)
-        {
-            Products.Visibility = Visibility.Hidden;
-            pets.Visibility = Visibility.Visible;
-        }
+      
 
         private void selectrow(object sender, SelectionChangedEventArgs e)
         {
@@ -199,20 +176,7 @@ namespace PETCARE_Csharp
 
         }
 
-        private void petselect(object sender, SelectionChangedEventArgs e)
-        {
-            Object rw = pets.SelectedItem;
-            pid = Int32.Parse((pets.SelectedCells[0].Column.GetCellContent(rw) as TextBlock).Text);
-            name = (pets.SelectedCells[1].Column.GetCellContent(rw) as TextBlock).Text;
-            price = (pets.SelectedCells[5].Column.GetCellContent(rw) as TextBlock).Text;
-
-
-            /* string testval2 = (Products.SelectedItem as ).ID;*/
-            Console.WriteLine(pid + name + price);
-            Item_Name1.Text = name;
-            Item_price.Text = price;
-
-        }
+       
 
 
 
@@ -237,7 +201,7 @@ namespace PETCARE_Csharp
                     try
                     {
                         Con.Open();
-                        SqlCommand cmd = new SqlCommand("insert into Billingtbl (Issued_Date,Customer_ID,Customer_Name,Emp_Name,Amount,Product_ID) values(@ISD,@CID,@CUN,@EMN,@AMT,@PID)", Con);
+                        SqlCommand cmd = new SqlCommand("insert into Billingtbl (Issued_date,customer_id,customer_name,emp_name,amount,product_id) values(@ISD,@CID,@CUN,@EMN,@AMT,@PID)", Con);
                         cmd.Parameters.AddWithValue("@ISD", Date);
                         cmd.Parameters.AddWithValue("@CID", bl.get_cusid());
                         cmd.Parameters.AddWithValue("@CUN", bl.get_cusname());
@@ -284,7 +248,7 @@ namespace PETCARE_Csharp
              Object rw = Fullamt.SelectedItem;
             billid = (Fullamt.SelectedCells[0].Column.GetCellContent(rw) as TextBlock).Text;
             Con.Open();
-            SqlCommand scm = new SqlCommand("SELECT * FROM Billingtbl WHERE Bill_No='"+billid+"'",Con);
+            SqlCommand scm = new SqlCommand("SELECT * FROM Billingtbl WHERE bill_no='"+billid+"'",Con);
             DataSet dt = new DataSet();
             SqlDataAdapter sdr = new SqlDataAdapter(scm);
             sdr.Fill(dt);
@@ -312,7 +276,7 @@ namespace PETCARE_Csharp
                     sw.WriteLine("Employee in charge: - "+emp_name);
                     sw.WriteLine("Total Amount: - "+amount);
                     sw.WriteLine("Product ID: - "+pid);
-                    sw.WriteLine("========================Cute n Furry================================");
+                    sw.WriteLine("========================The Book Cafe================================");
 
                 }
                 MessageBox.Show("Find the reciept in documents","",MessageBoxButton.OK,MessageBoxImage.Information);
@@ -327,9 +291,9 @@ namespace PETCARE_Csharp
         {
             if (Customer_ID.Text != "")
             {
-                Con.ConnectionString = ConfigurationManager.ConnectionStrings["thebookcafe"].ConnectionString;
+                
                 Con.Open();
-                SqlCommand sc = new SqlCommand("Select * from Customertbl where Customer_ID=@EN", Con);
+                SqlCommand sc = new SqlCommand("Select * from Customertbl where Customer_id=@EN", Con);
                 sc.Parameters.AddWithValue("@EN", Int32.Parse(Customer_ID.Text));
                 SqlDataReader sda = sc.ExecuteReader();
                 //DataTable dt = new DataTable();
