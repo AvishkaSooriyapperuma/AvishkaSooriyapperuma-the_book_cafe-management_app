@@ -25,11 +25,15 @@ namespace PETCARE_Csharp
             Cus_Name = cus_name;
             Emp_Name = emp_name;
             Date = date;
+          
 
         }
         public string get_totalprice()
         {
-            TOTPrice = (Int32.Parse(Price) * Int32.Parse(Qty)).ToString();
+           
+            
+            TOTPrice = (float.Parse(Price) * float.Parse(Qty)).ToString();
+            
             return TOTPrice;
         }
         public string get_issueddate()

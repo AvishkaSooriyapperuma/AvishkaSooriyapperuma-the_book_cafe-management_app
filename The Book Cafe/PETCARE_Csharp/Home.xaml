@@ -39,7 +39,7 @@
             <Setter Property="Height" Value="40"/>
             <Setter Property="Width" Value="100"/>
             <Setter Property="Margin" Value="20,20,20,20"/>
-            <Setter Property="Background" Value="#C8253E"/>
+            <Setter Property="Background" Value="#363636"/>
             <Setter Property="BorderBrush" Value="Transparent"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontFamily" Value="Fonts/Poppins-SemiBold.ttf"/>
@@ -159,6 +159,7 @@
                                 BorderBrush="#C8253E"
                                 Margin="56,140,818,0"
                                 BorderThickness="3"
+                                MouseLeftButtonDown="prodspg"
                                  >
 
 
@@ -170,10 +171,11 @@
                                                FontWeight="Medium"
                                                FontFamily="Poppins"
                                                HorizontalAlignment="Right"
-                                               Margin="0,107,52,24" Width="142" Height="82"/>
+                                               Margin="0,107,52,24" Width="155" Height="82"/>
 
                                 <Image Width="109"
                                        Source="book-logo.png"
+                                      
                                        HorizontalAlignment="Left" Margin="10,4,0,90"
                                        />
                             </Grid>
@@ -185,6 +187,7 @@
                                 Background="#C8253E"
                                 CornerRadius="20"
                                 BorderBrush="#C8253E"
+                                MouseLeftButtonDown="billing_click"
                                 Margin="295,-220,585,0"
                                 BorderThickness="3"
                             >
@@ -231,6 +234,7 @@
                                 CornerRadius="20"
                                 BorderBrush="#C8253E"
                                 Margin="154,464,37.2,22"
+                                MouseLeftButtonDown="prodspg"
                                 BorderThickness="3">
                     <Grid>
                         <Grid.ColumnDefinitions>

@@ -110,5 +110,9 @@ namespace PETCARE_Csharp
             this.Hide();
         }//navbar end
 
+        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }

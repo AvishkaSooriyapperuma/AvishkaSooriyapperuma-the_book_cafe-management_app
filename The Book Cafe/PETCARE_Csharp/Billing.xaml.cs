@@ -27,7 +27,7 @@ namespace PETCARE_Csharp
     public partial class Billing : Window
     {
         private string name;
-        private int pid;
+        public int pid;
         private string price;
         private string billid;
         SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-FLH7QV8;Initial Catalog=thebookcafe;Integrated Security=True");
@@ -133,7 +133,7 @@ namespace PETCARE_Csharp
         {
             try
             {            
-               Con.ConnectionString = ConfigurationManager.ConnectionStrings["thebookcafe"].ConnectionString;
+                
                 SqlCommand cmd = new SqlCommand("SELECT * FROM Billingtbl WHERE bill_no=(select max(bill_no) from Billingtbl)", Con);
                 DataTable dt = new DataTable();
                 Con.Open();
@@ -152,11 +152,6 @@ namespace PETCARE_Csharp
 
 
 
-        private void radProducts(object sender, RoutedEventArgs e)
-        {
-            Products.Visibility = Visibility.Visible;
-            
-        }
 
       
 
@@ -199,22 +194,30 @@ namespace PETCARE_Csharp
                     bill bl = new bill(name, price, Item_qty.Text, Customer_ID.Text, Customer_Name.Text, us.getusrnm(), Date);
 
                     try
-                    {
-                        Con.Open();
-                        SqlCommand cmd = new SqlCommand("insert into Billingtbl (Issued_date,customer_id,customer_name,emp_name,amount,product_id) values(@ISD,@CID,@CUN,@EMN,@AMT,@PID)", Con);
-                        cmd.Parameters.AddWithValue("@ISD", Date);
-                        cmd.Parameters.AddWithValue("@CID", bl.get_cusid());
-                        cmd.Parameters.AddWithValue("@CUN", bl.get_cusname());
-                        cmd.Parameters.AddWithValue("@EMN", bl.get_empname());
-                        cmd.Parameters.AddWithValue("@AMT", bl.get_totalprice());
-                        cmd.Parameters.AddWithValue("@PID", pid);
-                        cmd.ExecuteNonQuery();
-                        MessageBox.Show("Data has been added Successfully!", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                    {   //dfdsfdfs
+                         Con.Open();
+                         SqlCommand cmd = new SqlCommand("insert into Billingtbl (Issued_date,customer_id,customer_name,emp_name,amount,product_id) values(@ISD,@CID,@CUN,@EMN,@AMT,@PID)", Con);
+                         cmd.Parameters.AddWithValue("@ISD", Date);
+                         cmd.Parameters.AddWithValue("@CID", bl.get_cusid());
+                         cmd.Parameters.AddWithValue("@CUN", bl.get_cusname());
+                         cmd.Parameters.AddWithValue("@EMN", bl.get_empname());
+                         cmd.Parameters.AddWithValue("@AMT", bl.get_totalprice());
+                         cmd.Parameters.AddWithValue("@PID", pid);
+                         cmd.ExecuteNonQuery();
+                         MessageBox.Show("Data has been added Successfully!", "", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                        Con.Close();
-                        Loadbilldetails();
-                        Clear();
-                    }
+                     Con.Close();
+                    Console.WriteLine("date" + Date);
+                    Console.WriteLine("id" + bl.get_cusid());
+                    Console.WriteLine("cname" + bl.get_cusname());
+                    Console.WriteLine("empname" + bl.get_empname());
+                    Console.WriteLine("totprice" + bl.get_totalprice());
+                    Console.WriteLine("pid" +pid);
+
+                    Loadbilldetails();
+                    
+                       Clear();
+                }
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message);
@@ -247,6 +250,7 @@ namespace PETCARE_Csharp
             
              Object rw = Fullamt.SelectedItem;
             billid = (Fullamt.SelectedCells[0].Column.GetCellContent(rw) as TextBlock).Text;
+            Console.WriteLine("billid"+billid);
             Con.Open();
             SqlCommand scm = new SqlCommand("SELECT * FROM Billingtbl WHERE bill_no='"+billid+"'",Con);
             DataSet dt = new DataSet();
@@ -264,7 +268,7 @@ namespace PETCARE_Csharp
            
             string path;
             //path = System.IO.Path.Combine(document, "Bill\\"+ billid +".txt");
-            path = "C:\\Users\\User\\Desktop\\"+billid+".txt";
+            path = "D:\\Bill\\" + billid+".txt";
             if (!File.Exists(path))
             {
                 using (StreamWriter sw = File.CreateText(path))
@@ -312,3 +316,5 @@ namespace PETCARE_Csharp
         }
     }
 }
+
+  

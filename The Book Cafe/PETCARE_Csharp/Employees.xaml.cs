@@ -152,10 +152,10 @@ namespace PETCARE_Csharp
         {
             User us = new User();
             string uname = us.getusrnm();
-           
+
             Home pg = new Home(uname);
             pg.Show();
-           this.Hide();
+            this.Hide();
         }
 
     

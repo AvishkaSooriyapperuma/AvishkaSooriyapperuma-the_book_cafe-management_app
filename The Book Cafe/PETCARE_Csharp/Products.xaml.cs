@@ -162,14 +162,16 @@ namespace PETCARE_Csharp
 
         private void prodspg(object sender, MouseButtonEventArgs e)
         {
-            Products pg = new Products();
-            pg.Show();
-            this.Hide();
+            
+            this.Show();
+            
         }
 
         private void emppg(object sender, MouseButtonEventArgs e)
         {
-            this.Show();
+            Employees pg = new Employees();
+            pg.Show();
+            this.Hide();
 
         }
 
@@ -231,7 +233,7 @@ namespace PETCARE_Csharp
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
             Con.Open();
-            SqlCommand cmd = new SqlCommand("update book set book_name ='" + Book_Name.Text + "',shelf_no ='" + Shelf_no.Text + "',price='" +Price.Text + "',author ='" + Author.Text + "' where emp_id='" + Emp_Name1.Text + "'", Con);
+            SqlCommand cmd = new SqlCommand("update book set book_name ='" + Book_Name.Text + "',shelf_no ='" + Shelf_no.Text + "',price='" +Price.Text + "',author ='" + Author.Text + "' where book_id='" + Emp_Name1.Text + "'", Con);
             try
             {
                 cmd.ExecuteNonQuery();
